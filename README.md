@@ -171,5 +171,5 @@ All data is stored **locally in your browser** using `localStorage`. No data is 
 ---
 
 <div align="center">
-  <strong>Built with ❤️ for Singapore investors</strong>
+  <strong>Pursue your financial freedom.</strong>
 </div>
