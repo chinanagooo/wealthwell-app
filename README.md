@@ -2,13 +2,6 @@
 
 > Your complete financial command centre. Track every asset, measure your wellness, and simulate your future. Built for Singapore. Built by Singaporeans.
 
-![WealthWell](https://img.shields.io/badge/WealthWell-v1.0-dc2626?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7im6E8L3RleHQ+PC9zdmc+)
-![React](https://img.shields.io/badge/React-18-61dafb?style=for-the-badge&logo=react)
-![Vite](https://img.shields.io/badge/Vite-5-646cff?style=for-the-badge&logo=vite)
-![Docker](https://img.shields.io/badge/Docker-ready-2496ed?style=for-the-badge&logo=docker)
-
----
-
 ## Preview
 
 | Dashboard | Portfolio | Expenses |
@@ -19,16 +12,16 @@
 
 ## Features of WealthWell Application
 
-- ** Onboarding Wizard** — 6-step profile setup before accessing the app
-- ** Unified Portfolio** — Track assets across cash, stocks, crypto, property, CPF, and more
-- ** Wellness Score** — Dynamically computed across 6 financial health dimensions
-- ** Scenario Lab** — Simulate market crashes, job loss, rate hikes, and retirement
-- ** Action Centre** — AI-generated priority actions based on your real data
-- ** Expense Tracker** — Daily spending log with category breakdown and limit alerts
-- ** localStorage Persistence** — All data is saved locally in your browser
-- ** Profile Reset** — Start fresh anytime from the sidebar
-- ** SGD-first** — Multi-currency support with SGD as default
-- ** Pro Mode** — Bloomberg-style advanced analytics panel
+- **Onboarding Wizard** — 6-step profile setup before accessing the app
+- **Unified Portfolio** — Track assets across cash, stocks, crypto, property, CPF, and more
+- **Wellness Score** — Dynamically computed across 6 financial health dimensions
+- **Scenario Lab** — Simulate market crashes, job loss, rate hikes, and retirement
+- **Action Centre** — AI-generated priority actions based on your real data
+- **Expense Tracker** — Daily spending log with category breakdown and limit alerts
+- **localStorage Persistence** — All data is saved locally in your browser
+- **Profile Reset** — Start fresh anytime from the sidebar
+- **SGD-first** — Multi-currency support with SGD as default
+- **Pro Mode** — Bloomberg-style advanced analytics panel
 
 ---
 
