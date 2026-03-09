@@ -1,145 +1,182 @@
-# Wealthwell-App Setup Guide
+# WealthWell — Wealth Wellness Hub
 
-This guide will help you **install Docker**, **clone the Wealthwell-App Git repository**, and **run the application** on any machine (Windows, macOS, or Linux).
+> Your complete financial command centre. Track every asset, measure your wellness, and simulate your future. Built for Singapore. Built by Singaporeans.
 
----
-
-## 1. Prerequisites
-
-* **Git** installed
-
-  * Windows: [https://git-scm.com/download/win](https://git-scm.com/download/win)
-  * macOS: `brew install git`
-  * Linux: `sudo apt install git` (Debian/Ubuntu) or equivalent for your distro
-
-* **Docker Desktop** (for Windows/macOS) or Docker Engine (Linux)
-
-  * Windows/macOS: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-  * Linux: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
-
-* Optional: **Node.js** if you want to run locally outside Docker ([https://nodejs.org/](https://nodejs.org/))
+![WealthWell](https://img.shields.io/badge/WealthWell-v1.0-dc2626?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7im6E8L3RleHQ+PC9zdmc+)
+![React](https://img.shields.io/badge/React-18-61dafb?style=for-the-badge&logo=react)
+![Vite](https://img.shields.io/badge/Vite-5-646cff?style=for-the-badge&logo=vite)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ed?style=for-the-badge&logo=docker)
 
 ---
 
-## 2. Install Docker
+## Preview
 
-### Windows/macOS:
-
-1. Download Docker Desktop.
-2. Install and launch Docker Desktop.
-3. Ensure Docker is running (look for the whale icon in the system tray).
-4. Switch to **Linux containers** (if using Windows) by right-clicking the Docker icon and selecting "Switch to Linux containers".
-5. Optional: Enable **WSL2 backend** on Windows for better performance.
-
-### Linux:
-
-1. Follow official Docker Engine installation: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
-2. After installation, start Docker:
-
-```bash
-sudo systemctl start docker
-sudo systemctl enable docker
-```
-
-3. Verify installation:
-
-```bash
-docker --version
-docker info
-```
+| Dashboard | Portfolio | Expenses |
+|-----------|-----------|----------|
+| Wealth Wellness Score, net worth overview, and key metrics | Full balance sheet with assets and liabilities | Daily spending tracker with category breakdown |
 
 ---
 
-## 3. Clone the Git Repository
+## Features of WealthWell Application
 
-Open a terminal and run:
+- ** Onboarding Wizard** — 6-step profile setup before accessing the app
+- ** Unified Portfolio** — Track assets across cash, stocks, crypto, property, CPF, and more
+- ** Wellness Score** — Dynamically computed across 6 financial health dimensions
+- ** Scenario Lab** — Simulate market crashes, job loss, rate hikes, and retirement
+- ** Action Centre** — AI-generated priority actions based on your real data
+- ** Expense Tracker** — Daily spending log with category breakdown and limit alerts
+- ** localStorage Persistence** — All data is saved locally in your browser
+- ** Profile Reset** — Start fresh anytime from the sidebar
+- ** SGD-first** — Multi-currency support with SGD as default
+- ** Pro Mode** — Bloomberg-style advanced analytics panel
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18 + Vite 5 |
+| Charts | Recharts |
+| Styling | Inline styles + CSS custom properties |
+| Font | Sora (Google Fonts) |
+| Storage | Browser localStorage |
+| Container | Docker + nginx |
+
+---
+
+## Initialise Application
+
+### Option A — Docker (Recommended)
 
 ```bash
-# Clone the repository
+# 1. Clone the repo
 git clone https://github.com/chinanagooo/wealthwell-app.git
-
-# Move into the project folder
 cd wealthwell-app
-```
 
-> **Note:** If prompted for a password during Git push/pull, use a **GitHub Personal Access Token (PAT)** instead of your password.
-
-### Using Personal Access Token
-
-1. Go to GitHub → Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → Generate new token.
-2. Select `repo` scope and copy the token.
-3. When Git asks for your password, paste the token (typing is invisible — this is normal).
-
----
-
-## 4. Build the Docker Image
-
-Inside the project folder (where `Dockerfile` is located), run:
-
-```bash
+# 2. Build the Docker image
 docker build -t wealthwell-app .
+
+# 3. Run the container
+docker run -p 8080:80 -d wealthwell-app
+
+# 4. Open in browser
+# http://localhost:8080
 ```
 
-* `-t wealthwell-app` gives your image a name.
-* `.` tells Docker to use the current directory as the build context.
+### Option B — Local Development
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/chinanagooo/wealthwell-app.git
+cd wealthwell-app
+
+# 2. Install dependencies
+npm install
+
+# 3. Start dev server
+npm run dev
+
+# 4. Open in browser
+# http://localhost:5173
+```
 
 ---
 
-## 5. Run the Docker Container
+## Project Structure Layout
 
-```bash
-docker run -p 3000:3000 wealthwell-app
+```
+wealthwell-app/
+├── public/                 # Static assets
+├── src/
+│   ├── App.jsx             # Main application (onboarding + all screens)
+│   ├── main.jsx            # Vite entry point
+│   └── index.css           # Global reset and base styles
+├── index.html              # HTML entry with font preload
+├── package.json            # Dependencies
+├── vite.config.js          # Vite configuration
+├── Dockerfile              # Multi-stage Docker build
+└── README.md
 ```
 
-* This maps **port 3000** inside the container to **port 3000** on your host machine.
-* Open your browser and go to `http://localhost:3000` to see the app.
+---
 
-### Optional: Run in detached mode
-
-```bash
-docker run -d -p 3000:3000 wealthwell-app
-```
-
-* `-d` runs the container in the background.
-* View running containers:
+## Docker Commands Reference
 
 ```bash
+# Build image
+docker build -t wealthwell-app .
+
+# Run container (port 8080)
+docker run -p 8080:80 -d wealthwell-app
+
+# View running containers
 docker ps
-```
 
-* Stop the container:
-
-```bash
+# Stop container
 docker stop <container_id>
-```
 
----
+# Remove container
+docker rm <container_id>
 
-## 6. Pushing Changes to GitHub
+# Remove image (before rebuilding)
+docker rmi wealthwell-app
 
-```bash
-git add .
-git commit -m "Your commit message"
-git push origin main
-```
-
-* Use your **Personal Access Token** if prompted.
-* Ensure your `.gitignore` excludes `node_modules/`, `.env`, and other local files.
-
----
-
-## 7. Notes
-
-* Always build the Docker image after pulling new changes from GitHub:
-
-```bash
+# Rebuild after pulling changes
 git pull origin main
 docker build -t wealthwell-app .
+docker run -p 8080:80 -d wealthwell-app
 ```
-
-* Use **Docker Desktop** logs to debug if the container fails to run.
-* This setup ensures your app runs **identically on any machine**.
 
 ---
 
-**Repository:** [https://github.com/chinanagooo/wealthwell-app](https://github.com/chinanagooo/wealthwell-app)
+## Available Scripts
+
+```bash
+npm run dev       # Start development server (localhost:5173)
+npm run build     # Build for production → /dist
+npm run preview   # Preview production build locally
+npm run lint      # Run ESLint
+```
+
+---
+
+## Application Screens
+
+| Screen | Description |
+|--------|-------------|
+| **Home** | Net worth hero, wellness score, portfolio donut chart, top metrics |
+| **Portfolio** | Full balance sheet — add, edit, and delete assets and liabilities |
+| **Insights** | 6 wellness dimension scores + Pro Bloomberg analytics panel |
+| **Scenario Lab** | Interactive sliders to simulate financial shocks and events |
+| **Action Centre** | Prioritised flash cards with recommended financial actions |
+| **Expenses** | Daily spending tracker with limit alerts and category breakdown |
+| **Trust Centre** | Connected accounts, security info, and data reset |
+
+---
+
+## Privacy concerns
+
+All data is stored **locally in your browser** using `localStorage`. No data is sent to any server. You can clear everything at any time using the **New Profile / Reset** button in the sidebar.
+
+---
+
+## Contributing to the repository
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feat/your-feature`
+3. Commit your changes: `git commit -m "feat: add your feature"`
+4. Push to the branch: `git push origin feat/your-feature`
+5. Open a Pull Request
+
+---
+
+## License
+
+[chinanagooo](https://github.com/chinanagooo)
+
+---
+
+<div align="center">
+  <strong>Built with ❤️ for Singapore investors</strong>
+</div>
